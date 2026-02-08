@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For You ❤️</title>
+
+<style>
+body {
+    margin: 0;
+    height: 100vh;
+    background: linear-gradient(135deg, #ffb6c1, #ffd1dc);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Arial', sans-serif;
+    overflow: hidden;
+    animation: fadeIn 1.5s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.container {
+    text-align: center;
+    z-index: 2;
+    animation: slideUp 1.2s ease;
+}
+
+@keyframes slideUp {
+    from { transform: translateY(30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+h1 {
+    font-size: 2.3rem;
+    color: #b30059;
+    animation: heartbeat 2s infinite;
+}
+
+@keyframes heartbeat {
+    0% { transform: scale(1); }
+    25% { transform: scale(1.05); }
+    50% { transform: scale(1); }
+    75% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+.buttons {
+    margin-top: 30px;
+    position: relative;
+    height: 200px;
+}
+
+button {
+    padding: 12px 28px;
+    font-size: 1.2rem;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#yes {
+    background: #ff3366;
+    color: white;
+}
+
+#no {
+    background: #666;
+    color: white;
+    position: absolute;
+}
+
+.final {
+    display: none;
+    text-align: center;
+    padding: 20px;
+    animation: fadeIn 1.5s ease;
+    z-index: 2;
+}
+
+.final img {
+    width: 260px;
+    border-radius: 20px;
+}
+
+.final p {
+    font-size: 1.1rem;
+    color: #7a003c;
+    margin-top: 20px;
+    line-height: 1.5;
+}
+
+/* 💗 Floating Hearts */
+.heart {
+    position: absolute;
+    bottom: -20px;
+    font-size: 20px;
+    color: rgba(255, 51, 102, 0.7);
+    animation: floatUp linear forwards;
+    z-index: 1;
+}
+
+@keyframes floatUp {
+    from {
+        transform: translateY(0) scale(1);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(-110vh) scale(1.5);
+        opacity: 0;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container" id="main">
+    <h1>Will you be my Valentine? 💖</h1>
+    <div class="buttons">
+        <button id="yes">Yes ❤️</button>
+        <button id="no">No 🙄</button>
+    </div>
+</div>
+
+<div class="final" id="final">
+    <img src="https://media.giphy.com/media/MDJ9IbxxvDUQM/giphy.gif" alt="cute cat">
+    <p>
+I lovee you a lot 🥰❤️ and thanks for clicking yes like you had another choice 🙄😋<br><br>
+
+I may not be the perfect prince for you🙄🙄 BUT I don't regret loving you✨️😋❤️ and this is one of the best decisions that I will ever make. Your love has made stronger 🌷🥰✨️ and a better person.<br><br>
+
+I love you baby💕🧿🫂 When I think of your love, I feel like I am addicted to you. My love for you is sweeter than honey and I will always be there for you no matter the situation.<br><br>
+
+What more can I ask for than being with you the best lady in the world. I love that you have the most charming and soft heart that I have ever seen. You are the one and only person that I will ever love.<br><br>
+
+and i think i want to marry you and be yours and our kids🙄🐽😋❤️ i loveee youuuu🌷🫂🧿💓💕❤️
+    </p>
+</div>
+
+<!-- Romantic Music -->
+<audio id="music" loop>
+    <source src="https://www.bensound.com/bensound-music/bensound-love.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+let yesBtn = document.getElementById("yes");
+let noBtn = document.getElementById("no");
+let music = document.getElementById("music");
+let yesSize = 1;
+
+noBtn.style.left = "60px";
+noBtn.style.top = "60px";
+
+/* No button逃跑 */
+noBtn.addEventListener("click", () => {
+    const x = Math.random() * 220;
+    const y = Math.random() * 160;
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+
+    yesSize += 0.2;
+    yesBtn.style.transform = `scale(${yesSize})`;
+});
+
+/* Yes click */
+yesBtn.addEventListener("click", () => {
+    document.getElementById("main").style.display = "none";
+    document.getElementById("final").style.display = "block";
+    music.play();
+});
+
+/* 💗 Create floating hearts */
+setInterval(() => {
+    const heart = document.createElement("div");
+    heart.className = "heart";
+    heart.innerHTML = "❤️";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.fontSize = (14 + Math.random() * 20) + "px";
+    heart.style.animationDuration = (4 + Math.random() * 4) + "s";
+
+    document.body.appendChild(heart);
+
+    setTimeout(() => {
+        heart.remove();
+    }, 8000);
+}, 400);
+</script>
+
+</body>
+</html>
